@@ -1,4 +1,4 @@
-import { join, resolve } from "path";
+import path from "path";
 
 const cspHeader = `
     default-src 'self';
@@ -17,13 +17,19 @@ const cspHeader = `
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { isServer, nextRuntime }) => {
+  experimental: {
+    // Ensure middleware runs in edge runtime
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'hotelnew-ui.vercel.app'],
+    },
+  },
+  webpack: (config, { nextRuntime }) => {
     // Skip webpack config for Edge Runtime (middleware)
     // Only apply for Node.js runtime
     if (nextRuntime !== "nodejs") return config;
-    
-    const helperDirName = join(process.cwd(), "lib/email/", "helpersHbs");
-    
+
+    const helperDirName = path.join(process.cwd(), "lib/email/", "helpersHbs");
+
     config.module.rules.push({
       test: /\.hbs$/,
       use: [
@@ -32,7 +38,7 @@ const nextConfig = {
           options: {
             strict: true,
             noEscape: true,
-            helperDirs: [resolve(helperDirName)],
+            helperDirs: [path.resolve(helperDirName)],
           },
         },
       ],

@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function middleware(req) {
-  const res = NextResponse.next();
-  res.headers.set("x-pathname", req.nextUrl.pathname);
-  res.headers.set("x-url", req.nextUrl.href);
-  return res;
-}
-
+// This middleware must run in Edge Runtime
 export const config = {
   matcher: [
     /*
@@ -14,8 +8,18 @@ export const config = {
      * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * - favicon.ico, icon files, or manifest files
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|manifest)).*)',
   ],
 };
+
+export function middleware(request) {
+  const response = NextResponse.next();
+
+  // Add custom headers
+  response.headers.set("x-pathname", request.nextUrl.pathname);
+  response.headers.set("x-url", request.nextUrl.href);
+
+  return response;
+}
