@@ -1,10 +1,10 @@
+import { NextResponse } from "next/server";
+
 export function middleware(req) {
-  return new Response(null, {
-    headers: {
-      'x-pathname': req.nextUrl.pathname,
-      'x-url': req.nextUrl.href,
-    },
-  });
+  const response = NextResponse.next();
+  response.headers.set("x-pathname", req.nextUrl.pathname);
+  response.headers.set("x-url", req.nextUrl.href);
+  return response;
 }
 
 export const config = {
