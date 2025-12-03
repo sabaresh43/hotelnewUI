@@ -8,7 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function FindFlightAndHotelcards() {
   return (
     <section className="grid gap-[12px] md:grid-cols-2 lg:gap-[24px]">

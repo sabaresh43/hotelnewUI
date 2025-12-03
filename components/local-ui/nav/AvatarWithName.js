@@ -21,7 +21,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { signOutAction } from "@/lib/actions";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function AvatarWithName({
   sideBarLinksUser,
   onlineStatus = "Online",

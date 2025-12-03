@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function SettingsSideBar() {
   const searchParams = useSearchParams();
   const currentTab = searchParams.get("tab");

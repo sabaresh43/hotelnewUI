@@ -22,7 +22,7 @@ import logout from "@/public/icons/logout.svg";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function SideBar({ isLoggedIn, sideBarLinksUser }) {
   const pathname = encodeURIComponent(usePathname());
   const [sheetOpen, setSheetOpen] = useState(false);

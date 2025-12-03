@@ -9,7 +9,7 @@ import timer from "@/public/icons/timer-mint.svg";
 import airplaneIcon from "@/public/icons/airplane-filled-mint.svg";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { cn, minutesToHMFormat } from "@/lib/utils";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import NoSSR from "@/components/helpers/NoSSR";

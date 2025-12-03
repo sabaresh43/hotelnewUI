@@ -3,7 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function AccountDeletedToast() {
   const { toast } = useToast();
   const router = useRouter();

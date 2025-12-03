@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 import { getManyDocs, getOneDoc } from "@/lib/db/getOperationDB";
 import { redirect } from "next/navigation";
 import { RATING_SCALE } from "@/lib/constants";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { cookies } from "next/headers";
 import { flightRatingCalculation } from "@/lib/helpers/flights/flightRatingCalculation";
 import { isObject } from "@/lib/utils";

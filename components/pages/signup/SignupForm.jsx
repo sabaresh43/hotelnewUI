@@ -11,7 +11,7 @@ import { signUpAction } from "@/lib/actions";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function SignupForm() {
   const router = useRouter();
   const [state, dispatch] = useFormState(signUpAction, undefined);

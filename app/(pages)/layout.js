@@ -4,7 +4,7 @@ import { Footer } from "@/components/sections/Footer";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export default async function PagesLayout({ children }) {
   const navNotAllowedPaths = [
     routes.login.path,

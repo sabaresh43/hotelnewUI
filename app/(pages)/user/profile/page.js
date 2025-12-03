@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { getUserDetails } from "@/lib/services/user";
 export default async function ProfilePage({ searchParams }) {
   const session = await auth();

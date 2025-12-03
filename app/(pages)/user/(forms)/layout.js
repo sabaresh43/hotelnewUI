@@ -9,7 +9,7 @@ import {
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export default async function FormsLayout({ children }) {
   const session = await auth();
 

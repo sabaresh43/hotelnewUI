@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function ActiveNavLink({ className, ...props }) {
   const pathname = usePathname();
 

@@ -2,7 +2,7 @@ import { revalidateTag } from "next/cache";
 import MongoDBAdapter from "@/lib/db/MongoDBAdapter";
 import { updateOneDoc } from "@/lib/db/updateOperationDB";
 import { auth } from "@/lib/auth";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { getUserDetails } from "@/lib/services/user";
 export async function GET(req) {
   const session = await auth();

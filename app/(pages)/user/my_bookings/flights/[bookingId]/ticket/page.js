@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 import { notFound, redirect } from "next/navigation";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import FlightTicket from "@/components/pages/user.my_bookings.flights.[bookingRef].ticket/Ticket";
 import { generateHMACSignature } from "@/lib/utils.server";

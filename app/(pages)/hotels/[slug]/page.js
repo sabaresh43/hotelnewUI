@@ -37,7 +37,7 @@ import { getHotel } from "@/lib/services/hotels";
 import { cookies } from "next/headers";
 import validateHotelSearchParams from "@/lib/zodSchemas/hotelSearchParams";
 import NotFound from "@/app/not-found";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import Designation from "@/data/Destination";
 import { useEffectEvent } from "react";
 

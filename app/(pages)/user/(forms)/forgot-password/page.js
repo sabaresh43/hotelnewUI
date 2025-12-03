@@ -2,7 +2,7 @@ import { PasswordResetForm } from "@/components/pages/password-reset/passwordRes
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export default async function PasswordResetPage() {
   return (
     <div className="grow text-left">

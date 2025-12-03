@@ -2,7 +2,7 @@ import { VerifyCodeForm } from "@/components/pages/verify-code/verifyCodeForm";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export default function VerifyCodePage() {
   return (
     <div className="grow text-left">
