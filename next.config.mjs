@@ -17,25 +17,26 @@ const cspHeader = `
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { isServer }) => {
-    // Only apply handlebars loader on server-side
-    if (isServer) {
-      const helperDirName = join(process.cwd(), "lib/email/", "helpersHbs");
-      
-      config.module.rules.push({
-        test: /\.hbs$/,
-        use: [
-          {
-            loader: "handlebars-loader",
-            options: {
-              strict: true,
-              noEscape: true,
-              helperDirs: [resolve(helperDirName)],
-            },
+  webpack: (config, { isServer, nextRuntime }) => {
+    // Skip webpack config for Edge Runtime (middleware)
+    // Only apply for Node.js runtime
+    if (nextRuntime !== "nodejs") return config;
+    
+    const helperDirName = join(process.cwd(), "lib/email/", "helpersHbs");
+    
+    config.module.rules.push({
+      test: /\.hbs$/,
+      use: [
+        {
+          loader: "handlebars-loader",
+          options: {
+            strict: true,
+            noEscape: true,
+            helperDirs: [resolve(helperDirName)],
           },
-        ],
-      });
-    }
+        },
+      ],
+    });
 
     return config;
   },
