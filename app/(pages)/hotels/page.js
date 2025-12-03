@@ -2,7 +2,7 @@ import { SearchStaysForm } from "@/components/sections/SearchStaysForm";
 
 import { RecentSearches } from "@/components/sections/RecentSearches";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getRecentSearches } from "@/lib/services";
 import { PopularHotelDestinations } from "@/components/pages/hotels/sections/PopularHotelDestinations";
 export default async function HotelsPage() {

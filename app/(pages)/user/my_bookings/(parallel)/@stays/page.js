@@ -1,5 +1,5 @@
 import HotelBookingDetailsCard from "@/components/pages/profile/ui/HotelBookingDetailsCard";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getAllHotelBookings } from "@/lib/services/hotels";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { strToObjectId } from "@/lib/db/utilsDB";

@@ -1,5 +1,5 @@
 import { SettingsSideBar } from "@/components/pages/settings/sections/SideBar";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import routes from "@/data/routes";
 export default async function SettingsLayout({ children }) {

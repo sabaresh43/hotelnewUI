@@ -2,7 +2,7 @@ import "server-only";
 import { SubscribeNewsletter } from "@/components/SubscribeNewsletter";
 import { QuickLinks } from "@/components/sections/QuickLinks";
 import { Subscription } from "@/lib/db/models";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import Link from "next/link";
 export async function Footer() {
   const user = (await auth())?.user;

@@ -1,6 +1,6 @@
 import { BreadcrumbUI } from "@/components/local-ui/breadcrumb";
 import { AuthenticationCard } from "@/components/AuthenticationCard";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { parseFlightSearchParams } from "@/lib/utils";
 
 import { cookies } from "next/headers";

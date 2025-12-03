@@ -2,7 +2,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { Badge } from "@/components/ui/badge";
 import { Star, Users, Award, TrendingUp } from "lucide-react";
 import WebsiteReviewForm from "@/components/sections/WebsiteReviewForm";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { WebsiteReviewsList } from "./WebsiteReviewsList";
 import { getWebsiteReviews, getWebsiteReviewsStats } from "@/lib/services";

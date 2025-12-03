@@ -3,7 +3,7 @@ import AppearanceSettings from "@/components/pages/settings/sections/AppearanceS
 import PaymentSettings from "@/components/pages/settings/sections/PaymentSettings";
 import ProfileSettings from "@/components/pages/settings/sections/ProfileSettings";
 import SecuritySettings from "@/components/pages/settings/sections/SecuritySettings";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getUserDetails } from "@/lib/services/user";
 
 export default async function SettingsPage({ searchParams }) {

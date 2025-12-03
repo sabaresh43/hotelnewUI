@@ -3,7 +3,7 @@ import { Separator } from "../ui/separator";
 import { FlightOrHotelReviewList } from "./FlightOrHotelReviewList";
 import { WriteReview } from "./writeReview";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { RATING_SCALE } from "@/lib/constants";
 import { flightRatingCalculation } from "@/lib/helpers/flights/flightRatingCalculation";
 import { cn } from "@/lib/utils";

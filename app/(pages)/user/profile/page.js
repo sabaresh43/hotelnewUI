@@ -1,6 +1,6 @@
 import { ProfileImages } from "@/components/pages/profile/ProfileImages";
 import { ProfileData } from "@/components/pages/profile/ProfileData";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
 

@@ -1,6 +1,6 @@
 import { HotelResultCard } from "@/components/pages/hotels.search/ui/HotelResultCard";
 import { getManyDocs } from "@/lib/db/getOperationDB";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { RATING_SCALE } from "@/lib/constants";
 import { getUserDetails } from "@/lib/services/user";
 import validateHotelSearchParams from "@/lib/zodSchemas/hotelSearchParams";

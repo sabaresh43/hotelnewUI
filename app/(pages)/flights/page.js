@@ -1,6 +1,6 @@
 import { SearchFlightsForm } from "@/components/sections/SearchFlightsForm";
 import { FlightDestinations } from "@/components/pages/flights/sections/FlightDestinations";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getRecentSearches } from "@/lib/services";
 import { RecentSearches } from "@/components/sections/RecentSearches";
 

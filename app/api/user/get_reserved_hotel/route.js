@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { cancelBooking, isRoomTakenByElse } from "@/lib/services/hotels";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { HotelBooking } from "@/lib/db/models";

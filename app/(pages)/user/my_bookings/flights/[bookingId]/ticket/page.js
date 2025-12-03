@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { notFound, redirect } from "next/navigation";
 import routes from "@/data/routes";
 import { getOneDoc } from "@/lib/db/getOperationDB";

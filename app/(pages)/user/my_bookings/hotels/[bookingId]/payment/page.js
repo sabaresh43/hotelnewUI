@@ -1,4 +1,4 @@
-import { isLoggedIn } from "@/lib/auth";
+import { isLoggedIn } from "@/auth";
 import { notFound, redirect } from "next/navigation";
 
 import routes from "@/data/routes";
