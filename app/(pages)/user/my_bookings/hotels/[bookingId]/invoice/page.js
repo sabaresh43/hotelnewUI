@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getUserDetails } from "@/lib/services/user";
 import HotelBookingInvoice from "@/components/pages/user.my_bookings.hotels.[bookingId].invoice/HotelBookingInvoice";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import routes from "@/data/routes";
 export default async function HotelBookingInvoicePage({ params }) {
   const session = await auth();

@@ -1,5 +1,5 @@
 import { FlightBookingDetailsCard } from "@/components/pages/profile/ui/FlightBookingDetailsCard";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getAllFlightBookings } from "@/lib/services/flights";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { strToObjectId } from "@/lib/db/utilsDB";

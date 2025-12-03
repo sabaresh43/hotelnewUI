@@ -1,7 +1,7 @@
 import { revalidateTag } from "next/cache";
 import MongoDBAdapter from "@/lib/db/MongoDBAdapter";
 import { updateOneDoc } from "@/lib/db/updateOperationDB";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import routes from "@/data/routes";
 import { getUserDetails } from "@/lib/services/user";
 export async function GET(req) {

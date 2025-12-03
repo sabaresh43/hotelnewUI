@@ -1,7 +1,7 @@
 import { Nav } from "@/components/sections/Nav";
 import { Footer } from "@/components/sections/Footer";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { headers } from "next/headers";
 
 import routes from "@/data/routes";

@@ -1,7 +1,7 @@
 import { BreadcrumbUI } from "@/components/local-ui/breadcrumb";
 import { AuthenticationCard } from "@/components/AuthenticationCard";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import NotFound from "@/app/not-found";

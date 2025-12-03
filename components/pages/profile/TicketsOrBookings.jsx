@@ -2,7 +2,7 @@ import { TabsContent, TabsList, TabsTrigger, Tabs } from "@/components/ui/tabs";
 
 import Image from "next/image";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getAllFlightBookings } from "@/lib/services/flights";
 import Link from "next/link";
 import FlightBookingDetailsCardSmall from "./ui/FlightBookingDetailsCardSmall";

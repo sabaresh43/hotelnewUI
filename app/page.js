@@ -5,7 +5,7 @@ import { Reviews } from "@/components/pages/home/sections/Reviews";
 import { Footer } from "@/components/sections/Footer";
 import Image from "next/image";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { FlightDestinations } from "@/components/pages/flights/sections/FlightDestinations";
 import { PopularHotelDestinations } from "@/components/pages/hotels/sections/PopularHotelDestinations";
 

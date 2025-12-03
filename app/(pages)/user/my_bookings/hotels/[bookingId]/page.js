@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn, formatCurrency } from "@/lib/utils";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { strToObjectId } from "@/lib/db/utilsDB";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import routes from "@/data/routes";
 import { redirect } from "next/navigation";
 import { TruncatedBadgeList } from "@/components/pages/hotels.[bookingId]/TruncateBadgeList";

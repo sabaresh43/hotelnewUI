@@ -10,7 +10,7 @@ import SessionTimeoutCountdown from "@/components/local-ui/SessionTimeoutCountdo
 import dynamic from "next/dynamic";
 import FlightOrHotelReviewsSectionSkeleton from "@/components/local-ui/skeleton/FlightOrHotelReviewsSectionSkeleton";
 import { FareCard } from "@/components/FareCard";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { FlightBooking } from "@/lib/db/models";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

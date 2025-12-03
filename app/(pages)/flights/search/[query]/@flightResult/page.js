@@ -14,7 +14,7 @@ import SessionTimeoutCountdown from "@/components/local-ui/SessionTimeoutCountdo
 import Jumper from "@/components/local-ui/Jumper";
 import { SetLocalStorage } from "@/components/helpers/SetLocalStorage";
 import { defaultFlightFormValue } from "@/reduxStore/features/flightFormSlice";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import extractFilterObjFromSearchParams from "@/lib/helpers/flights/extractFilterObjFromSearchParams";
 import validateFlightSearchFilter from "@/lib/zodSchemas/flightSearchFilterValidation";
 async function FlightResultPage({ params }) {

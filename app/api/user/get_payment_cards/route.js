@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { getUserDetails } from "@/lib/services/user";
 import { updateOneDoc } from "@/lib/db/updateOperationDB";
 import initStripe, { createCustomer } from "@/lib/paymentIntegration/stripe";

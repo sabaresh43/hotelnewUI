@@ -1,6 +1,6 @@
 import { BreadcrumbUI } from "@/components/local-ui/breadcrumb";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { isLoggedIn } from "@/lib/auth";
+import { isLoggedIn } from "@/auth";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import routes from "@/data/routes";

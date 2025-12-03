@@ -1,5 +1,5 @@
 import { FavouritesFlightAndPlacesTab } from "@/components/pages/favourites/ui/FavouritsTab";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 
 import { getManyDocs, getOneDoc } from "@/lib/db/getOperationDB";
 import { redirect } from "next/navigation";

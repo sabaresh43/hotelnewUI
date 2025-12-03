@@ -6,7 +6,7 @@ import {
   CarouselItem,
 } from "@/components/local-ui/carousel";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 import routes from "@/data/routes";

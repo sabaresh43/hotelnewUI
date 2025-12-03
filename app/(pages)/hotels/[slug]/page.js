@@ -10,7 +10,7 @@ import { getOneDoc, getManyDocs } from "@/lib/db/getOperationDB";
 import { RATING_SCALE } from "@/lib/constants";
 import { RatingShow } from "@/components/local-ui/ratingShow";
 import { LikeButton } from "@/components/local-ui/likeButton";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import FlightOrHotelReview from "@/components/sections/FlightOrHotelReview";
 import { getUserDetails } from "@/lib/services/user";
 import { formatCurrency, formatDateToYYYYMMDD, groupBy } from "@/lib/utils";

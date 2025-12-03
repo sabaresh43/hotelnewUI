@@ -1,17 +1,17 @@
 import NextAuth from "next-auth";
-import MongoDBAdapter from "./db/MongoDBAdapter";
-import authConfig from "../auth.config";
+import MongoDBAdapter from "@/lib/db/MongoDBAdapter";
+import authConfig from "./auth.config";
 import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
 import AppleProvider from "next-auth/providers/apple";
 import CredentialProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { randomUUID } from "crypto";
-import { createOneDoc } from "./db/createOperationDB";
-import { getOneDoc } from "./db/getOperationDB";
-import { deleteOneDoc } from "./db/deleteOperationDB";
+import { createOneDoc } from "@/lib/db/createOperationDB";
+import { getOneDoc } from "@/lib/db/getOperationDB";
+import { deleteOneDoc } from "@/lib/db/deleteOperationDB";
 import mongoose from "mongoose";
-import { strToObjectId } from "./db/utilsDB";
+import { strToObjectId } from "@/lib/db/utilsDB";
 
 const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
