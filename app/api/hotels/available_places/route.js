@@ -1,67 +1,34 @@
 import { NextResponse } from "next/server";
+import { promises as fs } from "fs";
+import path from "path";
 
-// ✅ Required for Vercel (prevents static build errors)
+// Required for Vercel (prevents static build errors)
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(req) {
   try {
-    // ✅ Read token safely
     const { searchParams } = new URL(req.url);
-    const token = searchParams.get("token");
+    const q = searchParams.get("q") || "";
+    const country = searchParams.get("country") || "";
 
-    if (!token) {
-      return NextResponse.json(
-        { success: false, message: "Token is required" },
-        { status: 400 }
-      );
-    }
+    const filePath = path.join(process.cwd(), "data", "Destination.json");
+    const raw = await fs.readFile(filePath, "utf8");
+    const destinations = JSON.parse(raw || "[]");
 
-    // ✅ Import server-only libs AT RUNTIME (VERY IMPORTANT)
-    const jwt = await import("jsonwebtoken");
-    const { User } = await import("@/lib/db/models");
-
-    // ✅ Verify token
-    const decoded = jwt.default.verify(
-      token,
-      process.env.JWT_SECRET
-    );
-
-    if (!decoded?.id) {
-      return NextResponse.json(
-        { success: false, message: "Invalid token" },
-        { status: 400 }
-      );
-    }
-
-    // ✅ Find user
-    const user = await User.findById(decoded.id);
-
-    if (!user) {
-      return NextResponse.json(
-        { success: false, message: "User not found" },
-        { status: 404 }
-      );
-    }
-
-    // ✅ Update verification status
-    user.isVerified = true;
-    await user.save();
-
-    return NextResponse.json({
-      success: true,
-      message: "Email verified successfully"
+    // filter by country and q (city substring) if provided
+    const filtered = destinations.filter((d) => {
+      const matchesCountry = country ? String(d.country).toLowerCase() === country.toLowerCase() : true;
+      const matchesQ = q ? String(d.city).toLowerCase().includes(q.toLowerCase()) : true;
+      return matchesCountry && matchesQ;
     });
 
-  } catch (error) {
-    console.error("Confirm email error:", error);
+    // map to simple objects (optional)
+    const cities = filtered.map((d) => ({ city: d.city, country: d.country, code: d.code }));
 
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Invalid or expired verification link"
-      },
-      { status: 400 }
-    );
+    return NextResponse.json({ success: true, data: cities });
+  } catch (error) {
+    console.error("available_places error:", error);
+    return NextResponse.json({ success: false, message: "Failed to load destinations" }, { status: 500 });
   }
 }
