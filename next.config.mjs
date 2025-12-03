@@ -16,24 +16,26 @@ const cspHeader = `
 `;
 
 /** @type {import('next').NextConfig} */
-
-const helperDirName = join(process.cwd(), "lib/email/", "helpersHbs");
-
 const nextConfig = {
   webpack: (config, { isServer }) => {
-    config.module.rules.push({
-      test: /\.hbs$/,
-      use: [
-        {
-          loader: "handlebars-loader",
-          options: {
-            strict: true,
-            noEscape: true,
-            helperDirs: [resolve(helperDirName)],
+    // Only apply handlebars loader on server-side
+    if (isServer) {
+      const helperDirName = join(process.cwd(), "lib/email/", "helpersHbs");
+      
+      config.module.rules.push({
+        test: /\.hbs$/,
+        use: [
+          {
+            loader: "handlebars-loader",
+            options: {
+              strict: true,
+              noEscape: true,
+              helperDirs: [resolve(helperDirName)],
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
+    }
 
     return config;
   },
