@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { RatingShow } from "@/components/local-ui/ratingShow";
 import { LikeButton } from "@/components/local-ui/likeButton";
 import { hotelPriceCalculation } from "@/lib/helpers/hotels/priceCalculation";

@@ -1,7 +1,7 @@
 import { isLoggedIn } from "@/lib/auth";
 import { notFound, redirect } from "next/navigation";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { strToObjectId } from "@/lib/db/utilsDB";
 import HotelBookingPayment from "@/components/pages/hotels.book/HotelBookingPayment";

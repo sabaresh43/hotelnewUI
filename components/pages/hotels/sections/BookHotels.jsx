@@ -3,7 +3,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function BookHotels() {
   return (
     <section className="mb-[80px]">

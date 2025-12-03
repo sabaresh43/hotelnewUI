@@ -8,7 +8,7 @@ import { setNewPasswordAction } from "@/lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function SetNewPasswordForm() {
   const router = useRouter();
   const [state, dispatch] = useFormState(setNewPasswordAction, undefined);

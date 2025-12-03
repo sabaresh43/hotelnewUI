@@ -1,6 +1,6 @@
 import MongoDBAdapter from "@/lib/db/MongoDBAdapter";
 import { cookies } from "next/headers";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export async function GET(req) {
   const searchParams = new URL(req.url).searchParams;
 

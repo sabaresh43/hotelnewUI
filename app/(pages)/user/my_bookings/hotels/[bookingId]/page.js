@@ -6,7 +6,7 @@ import { cn, formatCurrency } from "@/lib/utils";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { strToObjectId } from "@/lib/db/utilsDB";
 import { auth } from "@/lib/auth";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { redirect } from "next/navigation";
 import { TruncatedBadgeList } from "@/components/pages/hotels.[bookingId]/TruncateBadgeList";
 import Link from "next/link";

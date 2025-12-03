@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import NotFound from "@/app/not-found";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { HotelBookingSteps } from "@/components/pages/hotels.book/HotelBookingSteps";
 import { getHotel } from "@/lib/services/hotels";
 import validateHotelSearchParams from "@/lib/zodSchemas/hotelSearchParams";

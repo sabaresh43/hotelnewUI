@@ -8,7 +8,7 @@ import { resendCodeAction } from "@/lib/actions";
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export function VerifyCodeForm() {
   const submitBtnRef = useRef();
   const { toast } = useToast();

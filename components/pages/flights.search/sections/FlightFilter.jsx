@@ -18,7 +18,7 @@ import {
   resetFilters,
 } from "@/reduxStore/features/flightFormSlice";
 import { useRouter } from "next/navigation";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { jumpTo } from "@/components/local-ui/Jumper";
 // does not work after new flight search, fix later
 export function FlightsFilter({ filters, defaultFilterObj, query, className }) {

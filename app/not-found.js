@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 
 export default function NotFound({
   whatHappened,

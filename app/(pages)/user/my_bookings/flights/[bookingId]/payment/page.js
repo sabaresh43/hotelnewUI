@@ -2,7 +2,7 @@ import BookingPayment from "@/components/pages/flights.book/sections/BookingPaym
 import { isLoggedIn } from "@/lib/auth";
 import { notFound, redirect } from "next/navigation";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { strToObjectId } from "@/lib/db/utilsDB";
 export default async function PaymentPage({ params }) {

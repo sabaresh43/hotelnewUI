@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import NotFound from "@/app/not-found";
 export default function FlightNotFound() {
   return (

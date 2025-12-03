@@ -7,7 +7,7 @@ import Link from "next/link";
 import { SideBar } from "@/components/local-ui/nav/SideBar";
 import { cn } from "@/lib/utils";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 
 import user from "@/public/icons/user.svg";
 import card from "@/public/icons/card.svg";

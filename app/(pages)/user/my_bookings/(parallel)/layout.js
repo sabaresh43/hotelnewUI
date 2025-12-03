@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { isLoggedIn } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 export default async function MyBookingsLayout({ flights, stays }) {
   const loggedIn = await isLoggedIn();
 

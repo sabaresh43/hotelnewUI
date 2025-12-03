@@ -9,7 +9,7 @@ import { authenticateAction } from "@/lib/actions";
 
 import { useFormState, useFormStatus } from "react-dom";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 export function LoginForm({ className }) {

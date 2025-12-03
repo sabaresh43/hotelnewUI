@@ -5,7 +5,7 @@ import { LikeButton } from "@/components/local-ui/likeButton";
 import share from "@/public/icons/share.svg";
 import { FLIGHT_CLASS_PLACEHOLDERS } from "@/lib/constants";
 
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 import { cn } from "@/lib/utils";
 import { multiSegmentCombinedFareBreakDown } from "@/lib/db/schema/flightItineraries";
 export function FlightData({ data, searchState, metaData, className }) {

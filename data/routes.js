@@ -1,4 +1,4 @@
-{
+const routes = {
   "home": {
     "title": "Home",
     "path": "/"
@@ -68,3 +68,5 @@
     "path": "/support"
   }
 }
+export default routes;
+

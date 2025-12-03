@@ -1,4 +1,4 @@
-import routes from "@/data/routes.json";
+import routes from "@/data/routes";
 const authConfig = {
   secret: process.env.AUTH_SECRET,
   pages: {
