@@ -62,7 +62,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "destiin.vercel.app",
+        hostname: "hotelnew-ui.vercel.app",
       },
       {
         protocol: "https",
