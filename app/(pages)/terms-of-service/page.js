@@ -66,7 +66,7 @@ export default function TermsOfServicePage() {
       <p>
         Users can upload profile and cover photos. These are stored securely on
         Firebase. Users are advised to avoid providing real sensitive data,
-        including phone numbers, addresses, or dates of birth. Golob Travel
+        including phone numbers, addresses, or dates of birth. Destiin
         Agency is not liable for any data misuse caused by the user providing
         real information.
       </p>
@@ -74,7 +74,7 @@ export default function TermsOfServicePage() {
       <h2>4. Intellectual Property</h2>
       <p>
         All content on the website, including text, images, and designs, is
-        owned by Golob Travel Agency. Unauthorized use of the content is
+        owned by Destiin. Unauthorized use of the content is
         prohibited.
       </p>
 
@@ -102,7 +102,7 @@ export default function TermsOfServicePage() {
 
       <h2>8. Limitation of Liability</h2>
       <p>
-        Golob Travel Agency is not responsible for any data misuse or losses
+        Destiin is not responsible for any data misuse or losses
         arising from users providing real sensitive information. All use of the
         website is at the user’s own risk.
       </p>

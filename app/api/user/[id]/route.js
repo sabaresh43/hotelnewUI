@@ -5,7 +5,7 @@ export async function GET(req, { params }) {
     const user = {
       name: Object.keys(getUser).length
         ? getUser?.firstName + " " + getUser?.lastName
-        : "A golobe user",
+        : "A Destiine user",
       profileImage: getUser?.profileImage ?? null,
     };
 

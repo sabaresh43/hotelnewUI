@@ -130,7 +130,7 @@ export async function POST(req) {
           });
           await sendEmail(
             [{ Email: charge.metadata.userEmail }],
-            "Thank you for booking flight with golobe",
+            "Thank you for booking flight with Destiine",
             htmlEmail,
           );
         }

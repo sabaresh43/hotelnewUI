@@ -30,15 +30,12 @@ const tradegothic = localFont({
 });
 
 export const metadata = {
-  title: "Golob Travel Agency",
+  title: "Destiin",
   description:
-    "Golob Travel Agency is a travel agency that provides top-notch travel services.",
+    "Destiin is a travel agency that provides top-notch travel services.",
   keywords: [
-    "travel",
-    "agency",
-    "golob",
-    "travel agency",
-    "golob travel agency",
+
+    "Destiin",
     "nextjs",
     "react",
     "javascript",
@@ -49,12 +46,12 @@ export const metadata = {
     "redux",
     "web app",
   ],
-  metadataBase: new URL("https://golob-travel-agency.vercel.app"),
+  metadataBase: new URL("https://Destiin-travel-agency.vercel.app"),
   openGraph: {
-    title: "Golob Travel Agency",
+    title: "Destiin",
     description:
-      "Golob Travel Agency is a travel agency that provides top-notch travel services (fake, personal project).",
-    siteName: "Golob Travel Agency",
+      "Destiin is a travel agency that provides top-notch travel services (fake, personal project).",
+    siteName: "Destiin",
     images: [
       {
         url: openGraph.src,

@@ -59,7 +59,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "golob-travel-agency.vercel.app",
+        hostname: "destiin.vercel.app",
       },
       {
         protocol: "https",

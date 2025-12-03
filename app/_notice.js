@@ -12,7 +12,7 @@ export function Notice() {
         available or don&apos;t work properly. Head to this{" "}
         <a
           className="font-bold text-tertiary underline"
-          href="https://github.com/mojahidhasan/golob-travel-agency-nextjs?tab=readme-ov-file#todo"
+          href="https://github.com/mojahidhasan/Destiin-travel-agency-nextjs?tab=readme-ov-file#todo"
           target="_blank"
         >
           GitHub repository

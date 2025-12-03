@@ -1,6 +1,6 @@
-# API Documentation - Golobe Travel Agency
+# API Documentation - Destiine Travel Agency
 
-This document provides information about the available API endpoints in the Golobe Travel Agency application.
+This document provides information about the available API endpoints in the Destiine Travel Agency application.
 
 ## 🔐 Authentication
 

@@ -1,6 +1,6 @@
-# Getting Started Guide - Golobe Travel Agency
+# Getting Started Guide - Destiine Travel Agency
 
-Welcome to the Golobe Travel Agency project! This comprehensive guide will help you set up and run the project locally on your machine.
+Welcome to the Destiine Travel Agency project! This comprehensive guide will help you set up and run the project locally on your machine.
 
 ## 📋 Table of Contents
 
@@ -58,10 +58,10 @@ If you're familiar with Next.js projects, here's the quick setup:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/mojahidhasan/fullstack-nextjs-golobe-travel-agency.git
+git clone https://github.com/mojahidhasan/fullstack-nextjs-Destiine-travel-agency.git
 
 # 2. Navigate to project directory
-cd fullstack-nextjs-golobe-travel-agency
+cd fullstack-nextjs-Destiine-travel-agency
 
 # 3. Install dependencies
 npm install
@@ -85,8 +85,8 @@ curl -X POST http://localhost:3000/api/generate/website_config -H "Authorization
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/mojahidhasan/fullstack-nextjs-golobe-travel-agency.git
-cd fullstack-nextjs-golobe-travel-agency
+git clone https://github.com/mojahidhasan/fullstack-nextjs-Destiine-travel-agency.git
+cd fullstack-nextjs-Destiine-travel-agency
 ```
 
 ### Step 2: Install Dependencies
@@ -126,7 +126,7 @@ The application requires several environment variables to function properly. Her
 
 ```env
 # Database
-MONGODB_URI=mongodb://localhost:27017/golobe_travel_agency
+MONGODB_URI=mongodb://localhost:27017/Destiine_travel_agency
 
 # Authentication
 AUTH_SECRET=your-super-secret-auth-key-here
@@ -154,7 +154,7 @@ MAIL_SENDER_EMAIL=noreply@yourdomain.com
 
 | Variable                | Description                         | Required | Example                                          |
 | ----------------------- | ----------------------------------- | -------- | ------------------------------------------------ |
-| `MONGODB_URI`           | MongoDB connection string           | Yes      | `mongodb://localhost:27017/golobe_travel_agency` |
+| `MONGODB_URI`           | MongoDB connection string           | Yes      | `mongodb://localhost:27017/Destiine_travel_agency` |
 | `AUTH_SECRET`           | Secret key for NextAuth.js          | Yes      | `your-super-secret-auth-key-here`                |
 | `NEXT_PUBLIC_BASE_URL`  | Public base URL for the application | Yes      | `http://localhost:3000`                          |
 | `API_SECRET_TOKEN`      | Token for API authentication        | Yes      | `your-api-secret-token-here`                     |
@@ -212,7 +212,7 @@ MAIL_SENDER_EMAIL=noreply@yourdomain.com
 
 4. **Update Environment Variable**
    ```env
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/golobe_travel_agency
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/Destiine_travel_agency
    ```
 
 ## 💳 Payment Integration (Stripe)
@@ -477,7 +477,7 @@ npm install
 ## 📁 Project Structure
 
 ```
-fullstack-nextjs-golobe-travel-agency/
+fullstack-nextjs-Destiine-travel-agency/
 ├── app/                          # Next.js App Router
 │   ├── (pages)/                  # Route groups
 │   ├── api/                      # API routes
@@ -580,7 +580,7 @@ fullstack-nextjs-golobe-travel-agency/
 If you encounter any issues:
 
 1. Check the [Troubleshooting](#troubleshooting) section
-2. Search existing [GitHub Issues](https://github.com/mojahidhasan/fullstack-nextjs-golobe-travel-agency/issues)
+2. Search existing [GitHub Issues](https://github.com/mojahidhasan/fullstack-nextjs-Destiine-travel-agency/issues)
 3. Create a new issue with detailed information
 4. Join the community discussions
 

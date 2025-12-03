@@ -35,7 +35,7 @@ export async function Reviews() {
         <div className="mb-16">
           <SectionTitle
             title="Customer Reviews"
-            subTitle="Discover what our valued customers say about their Golobe experience"
+            subTitle="Discover what our valued customers say about their Destiine experience"
           />
 
           {/* Enhanced Statistics */}

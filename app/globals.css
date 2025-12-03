@@ -105,7 +105,7 @@
   .active {
     @apply border-b-2 border-b-primary;
   }
-  .golobe-scrollbar {
+  .Destiine-scrollbar {
     scrollbar-color: hsl(var(--primary)) hsl(var(--secondary));
     scrollbar-width: thin;
     scrollbar-gutter: none;

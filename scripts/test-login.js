@@ -20,7 +20,7 @@ const User = mongoose.models.User || mongoose.model("User", userSchema);
 const Account = mongoose.models.Account || mongoose.model("Account", accountSchema);
 
 async function testLogin() {
-  const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/golobe_travel_agency";
+  const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/Destiine_travel_agency";
   
   try {
     await mongoose.connect(MONGODB_URI);

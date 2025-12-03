@@ -8,7 +8,7 @@ export default async function LoginPage() {
           Login
         </h2>
         <p className="text-[0.875rem] text-secondary/75 xl:text-[1rem]">
-          Login to access your Golobe account
+          Login to access your Destiine account
         </p>
       </div>
       <LoginForm />
