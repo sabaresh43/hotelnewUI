@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
-import NextAuth from "next-auth";
-import { middlewareAuthConfig } from "./auth.middleware";
 
-const { auth } = NextAuth(middlewareAuthConfig);
+export function middleware(req) {
+  const response = NextResponse.next();
+  response.headers.set("x-pathname", req.nextUrl.pathname);
+  response.headers.set("x-url", req.nextUrl.href);
+  return response;
+}
 
-export default auth((req) => {
-  const res = NextResponse.next();
-  res.headers.set("x-pathname", req.nextUrl.pathname);
-  res.headers.set("x-url", req.nextUrl.href);
-  return res;
-});
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+}
