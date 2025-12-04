@@ -26,11 +26,11 @@ export default async function ConfirmEmailPage({ searchParams }) {
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
       <div
-        className={`w-full max-w-md rounded-xl border p-6 text-center shadow-sm ${isSuccess ? "border-green-300 bg-green-50 text-green-800" : "border-red-300 bg-red-50 text-red-800"}`}
+        className={`w-full max-w-md rounded-xl border p-6 text-center shadow-sm ${isSuccess ? "border-blue-300 bg-blue-50 text-blue-800" : "border-red-300 bg-red-50 text-red-800"}`}
       >
         {isSuccess ? (
           <>
-            <CheckCircle className="mx-auto mb-2 h-12 w-12 text-green-600" />
+            <CheckCircle className="mx-auto mb-2 h-12 w-12 text-blue-600" />
             <h1 className="mb-2 text-xl font-semibold">{data.message}</h1>
             <p className="text-sm text-gray-600">You may now close this tab.</p>
             <DeleteLocalStorageAndCookies email={data.verifiedEmail} />

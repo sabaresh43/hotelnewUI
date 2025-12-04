@@ -57,12 +57,12 @@ export async function Reviews() {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-2xl border border-green-200 bg-gradient-to-br from-green-50 to-green-100 p-6 text-center transition-all duration-300 hover:scale-105 hover:border-green-300 hover:shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-green-100/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+            <div className="group relative overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-100 p-6 text-center transition-all duration-300 hover:scale-105 hover:border-blue-300 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
               <div className="relative">
                 <div className="mb-3 flex items-center justify-center">
-                  <div className="rounded-full bg-green-100 p-3">
-                    <Users className="h-6 w-6 text-green-600" />
+                  <div className="rounded-full bg-blue-100 p-3">
+                    <Users className="h-6 w-6 text-blue-600" />
                   </div>
                 </div>
                 <div className="mb-1 text-3xl font-bold text-gray-900">

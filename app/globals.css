@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Fascinate&family=Rubik+Wet+Paint&display=swap');
+
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    --background: 210 100% 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,10 +14,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 159 44% 69%;
-    --primary-foreground: 120 33% 10%;
+    --primary: 200 100% 62%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 120 33% 10%;
+    --secondary: 210 85% 42%;
     --secondary-foreground: 0 0% 100%;
 
     --tertiary: 6 93% 71%;
@@ -25,8 +26,8 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 200 100% 80%;
+    --accent-foreground: 210 75% 16%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
@@ -54,13 +55,13 @@
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 210 75% 16%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 6 93% 71%;
+    --accent: 200 100% 80%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -74,11 +75,13 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
+
 .fascinate-regular {
   font-family: "Fascinate", system-ui;
   font-weight: 800;
-  font-style:oblique;
+  font-style: oblique;
 }
+
 .rubik-wet-paint-regular {
   font-family: "Rubik Wet Paint", system-ui;
   font-weight: 800;
@@ -105,15 +108,18 @@
   .active {
     @apply border-b-2 border-b-primary;
   }
+
   .Destiine-scrollbar {
     scrollbar-color: hsl(var(--primary)) hsl(var(--secondary));
     scrollbar-width: thin;
     scrollbar-gutter: none;
   }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

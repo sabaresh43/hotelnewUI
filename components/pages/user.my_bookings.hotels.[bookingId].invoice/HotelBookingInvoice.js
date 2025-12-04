@@ -13,8 +13,8 @@ export default function HotelBookingInvoice({
   const total = formatCurrency(hotelBooking.totalPrice);
 
   const statusColors = {
-    confirmed: "text-green-700",
-    paid: "text-green-700",
+    confirmed: "text-blue-700",
+    paid: "text-blue-700",
     pending: "text-yellow-700",
     cancelled: "text-red-700",
     failed: "text-red-700",
