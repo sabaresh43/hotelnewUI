@@ -110,10 +110,10 @@ module.exports = {
     },
   },
   safelist: [
-    "text-green-700",
+    "text-blue-700",
     "text-yellow-500",
     "text-destructive",
-    "bg-green-100",
+    "bg-blue-100",
     "bg-yellow-100",
     "bg-red-100",
   ],

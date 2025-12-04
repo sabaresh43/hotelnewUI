@@ -30,7 +30,7 @@ export default async function AccountSettings({ userDetails }) {
             />
           </div>
           <p
-            className={`text-sm ${isDateObjValid(primaryEmail.emailVerifiedAt) ? "text-green-600" : "text-red-600"}`}
+            className={`text-sm ${isDateObjValid(primaryEmail.emailVerifiedAt) ? "text-blue-600" : "text-red-600"}`}
           >
             {isDateObjValid(primaryEmail.emailVerifiedAt)
               ? "Verified"

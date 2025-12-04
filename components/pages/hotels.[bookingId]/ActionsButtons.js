@@ -81,7 +81,7 @@ export function RequestRefundHotelBookingButton({ bookingId }) {
     <AlertDialog open={open}>
       <AlertDialogTrigger asChild>
         <Button
-          className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+          className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
           variant="outline"
           onClick={() => setOpen(true)}
         >
@@ -101,7 +101,7 @@ export function RequestRefundHotelBookingButton({ bookingId }) {
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleRequest}
-            className="bg-green-600 text-white hover:bg-green-600/90 focus:bg-green-600/90 active:bg-green-600/90 disabled:bg-disabled disabled:text-disabled-foreground"
+            className="bg-blue-600 text-white hover:bg-blue-600/90 focus:bg-blue-600/90 active:bg-blue-600/90 disabled:bg-disabled disabled:text-disabled-foreground"
           >
             Continue
           </AlertDialogAction>
