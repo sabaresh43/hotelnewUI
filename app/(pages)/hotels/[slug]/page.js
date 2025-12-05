@@ -60,22 +60,22 @@ export default async function HotelDetailsPage({ params }) {
     );
 
   // const hotelDetails = await getHotel(slug, searchState);
-  const payload ={
-     "country": Designation.find(des => des.city === searchState.city)?.country || "",
-        cityCode: Number(Designation.find(des => des.city === searchState.city)?.code || ""),
+  const payload = {
+    "country": Designation.find(des => des.city === searchState.city)?.country || "",
+    cityCode: Number(Designation.find(des => des.city === searchState.city)?.code || ""),
     "fromDate": formatDateToYYYYMMDD(new Date(Number(searchState.checkIn))),
     "toDate": formatDateToYYYYMMDD(new Date(Number(searchState.checkOut))),
     "sort": 1,
     "currency": "EUR",
     "occupancy": [
-        {
-            "adults": searchState?.guests,
-            "roomCount": searchState?.rooms,
-            "childAges": []
-        }
+      {
+        "adults": searchState?.guests,
+        "roomCount": searchState?.rooms,
+        "childAges": []
+      }
     ],
     "employee_id": "HR-EMP-00001",
-}
+  }
   const hotelDetailsRes = await fetch(`${process.env.BACKEND_URL}/hotels/dida/${slug}`, {
     method: "POST",
     headers: {
@@ -86,11 +86,11 @@ export default async function HotelDetailsPage({ params }) {
   const hotelDetailss = await hotelDetailsRes.json();
   const hotelDetails = {
     ...hotelDetailss?.data,
-    images:hotelDetailss?.data?.thumbnails.map(img=>img?.value),
-    rooms: hotelDetailss?.data?.rooms?.map((room) => ({
+    images: hotelDetailss?.data?.thumbnails.map(img => img?.value),
+    rooms: hotelDetailss?.data?.rooms ? Object.values(hotelDetailss?.data?.rooms).map((room) => ({
       ...room,
       hotelId: hotelDetailss?.data?._id || "6746b60b0f952c93060c5715", // Static fallback
-    })),
+    })) : [],
   };
   console.log("hotelDetails from external API:", hotelDetails);
 
@@ -101,7 +101,7 @@ export default async function HotelDetailsPage({ params }) {
     "HotelReview",
     { hotelId: strToObjectId(hotelDetails._id), slug },
     [hotelDetails._id + "_review", params.slug + "_review", "hotelReviews"],
-  )||[];
+  ) || [];
 
   const totalRatingsSum = reviews.reduce(
     (acc, review) => acc + +review.rating,
@@ -134,14 +134,14 @@ export default async function HotelDetailsPage({ params }) {
 
     return aPrice - bPrice;
   });
-  const cheapestRoom = roomsSorted[0];
+  const cheapestRoom = roomsSorted?.[0];
 
   // const price = hotelPriceCalculation(cheapestRoom.price, 1);
   // const price = hotelPriceCalculation(cheapestRoom?.TotalPrice, 1);
-  const price = cheapestRoom?.TotalPrice;
+  const price = cheapestRoom?.TotalPrice || 0;
 
-  const cheapestRoomPrice = formatCurrency(cheapestRoom?.TotalPrice);
-  const totalBeforeDiscount = formatCurrency(price.totalBeforeDiscount);
+  const cheapestRoomPrice = formatCurrency(cheapestRoom?.TotalPrice || 0);
+  // const totalBeforeDiscount = formatCurrency(price.totalBeforeDiscount);
 
   let isLiked = false;
   if (session?.user) {
@@ -150,11 +150,11 @@ export default async function HotelDetailsPage({ params }) {
   }
 
   // const groupByRoomType = groupBy(roomsSorted, (room) => room.roomType);
-  
-    hotelDetails.features= hotelDetails?.HotelFacilities.split(/<br\s*\/?>/i)   // split by <br> or <br />
-  .map(item => item.trim()) // remove extra spaces
-  .filter(item => item.length > 0);
-    console.log("hotelDetails.features:",hotelDetails.features);
+
+  hotelDetails.features = hotelDetails?.HotelFacilities.split(/<br\s*\/?>/i)   // split by <br> or <br />
+    .map(item => item.trim()) // remove extra spaces
+    .filter(item => item.length > 0);
+  console.log("hotelDetails.features:", hotelDetails.features);
 
   return (
     <main className={"mx-auto mb-[90px] mt-10 w-[90%]"}>
@@ -190,11 +190,11 @@ export default async function HotelDetailsPage({ params }) {
         </div>
         <div>
           <div className="mb-[16px] flex flex-col text-right text-[0.875rem] font-bold text-tertiary sm:items-end">
-            {Boolean(+price.discountPercentage) && (
+            {/* {Boolean(+price.discountPercentage) && (
               <p className="w-fit rounded-md bg-tertiary px-2 py-1 text-sm font-semibold text-white">
                 {price.discountPercentage}% OFF
               </p>
-            )}
+            )} */}
             <div className="space-x-2 max-sm:text-left">
               {/* {totalBeforeDiscount !== cheapestRoomPrice && (
                 <>
@@ -312,9 +312,9 @@ export default async function HotelDetailsPage({ params }) {
       <div>
         <h2 className="mb-[16px] text-2xl font-bold">Overview</h2>
         {/* <p className="mb-[32px] font-medium opacity-75"> */}
-           <div
-      className="prose max-w-none"
-      dangerouslySetInnerHTML={{ __html: hotelDetails?.description }}></div>
+        <div
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: hotelDetails?.description }}></div>
         {/* </p> */}
         <div className="Destiine-scrollbar flex gap-[16px] overflow-x-auto pb-3">
           <div className="h-[145px] min-w-[160px] whitespace-nowrap rounded-[12px] bg-primary p-[16px]">
@@ -354,18 +354,16 @@ export default async function HotelDetailsPage({ params }) {
       <div>
         <h2 className="mb-[32px] text-2xl font-bold">Available Rooms</h2>
         <div className="space-y-6">
-          {Object.entries(hotelDetails?.rooms).map(([roomTypes, rooms]) => {
-            const roomType = rooms?.Rooms[0];
+          {hotelDetails?.rooms?.map((room, index) => {
+            const roomType = room?.Rooms?.[0] || `Room ${index + 1}`;
             console.log("roomType:", roomType);
-            console.log("roomsrooms:", rooms);
-            // const groupByBedOptions = groupBy(rooms, (room) => room.bedOptions);
-            const groupByBedOptions = rooms;
+            console.log("room:", room);
             const price = 100;
 
             return (
               <Dropdown
-                key={roomType}
-                open={roomType === "Budget Room"}
+                key={room._id || index}
+                open={index === 0}
                 title={roomType}
               >
                 <div className="space-y-4 p-4">
@@ -373,51 +371,50 @@ export default async function HotelDetailsPage({ params }) {
                     const oneEquivalentRoom = arr;
                     console.log("oneEquivalentRoom:", oneEquivalentRoom);
                     console.log("oneEquivalentRoom:", arr); */}
-                   
-                      <RoomDetailsModal
-                        key={roomTypes}
-                        roomDetails={rooms}
-                        customTriggerElement={
-                          <div
-                            key={roomTypes}
-                            className="group flex items-center justify-between rounded-md border-b p-1 pb-4 hover:bg-gray-100"
-                          >
-                            <div className="flex items-center gap-4">
-                              {/* <Image
+
+                  <RoomDetailsModal
+                    key={room._id || index}
+                    roomDetails={room}
+                    customTriggerElement={
+                      <div
+                        key={room._id || index}
+                        className="group flex items-center justify-between rounded-md border-b p-1 pb-4 hover:bg-gray-100"
+                      >
+                        <div className="flex items-center gap-4">
+                          {/* <Image
                                 src={oneEquivalentRoom?.images[0]}
                                 alt="Room image"
                                 width={64}
                                 height={64}
                                 className="aspect-square rounded-md object-cover"
                               /> */}
-                              <div>
-                                <p className="text-sm font-medium group-hover:underline">
-                                  {rooms?.TotalPrice}
-                                </p>
-                                <p className="text-xs font-bold opacity-60">
-                                  {/* {formatCurrency(oneEquivalentRoom?.TotalPrice)} / night */}
-                                  {rooms?.TotalPrice} / night
-                                </p>
-                                <p className="text-xs opacity-60">
-                                  Person capacity:{" "}
-                                  {rooms?.sleepsCount ||2}
-                                </p>
-                                <p className="text-xs opacity-60">
-                                  Available rooms: {rooms?.length}
-                                </p>
-                              </div>
-                            </div>
-                            <div>
-                              {Boolean(price?.discountPercentage) && (
-                                <p className="rounded-md bg-tertiary p-1 font-bold text-white">
-                                  {price?.discountPercentage}% OFF
-                                </p>
-                              )}
-                            </div>
+                          <div>
+                            <p className="text-sm font-medium group-hover:underline">
+                              {roomType}
+                            </p>
+                            <p className="text-xs font-bold opacity-60">
+                              {room?.Currency} {room?.TotalPrice} / night
+                            </p>
+                            <p className="text-xs opacity-60">
+                              Person capacity:{" "}
+                              {room?.sleepsCount || 2}
+                            </p>
+                            <p className="text-xs opacity-60">
+                              Available: 1 room
+                            </p>
                           </div>
-                        }
-                      />
-                    {/* ); */}
+                        </div>
+                        <div>
+                          {Boolean(price?.discountPercentage) && (
+                            <p className="rounded-md bg-tertiary p-1 font-bold text-white">
+                              {price?.discountPercentage}% OFF
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    }
+                  />
+                  {/* ); */}
                   {/* })} */}
                 </div>
               </Dropdown>
@@ -432,8 +429,8 @@ export default async function HotelDetailsPage({ params }) {
         </div>
         <div>
           <Map
-            lat={+hotelDetails?.coordinates?.longitude||28.6139}
-            lon={+hotelDetails?.coordinates?.latitude ||77.209}
+            lat={+hotelDetails?.coordinates?.longitude || 28.6139}
+            lon={+hotelDetails?.coordinates?.latitude || 77.209}
             address={
               hotelDetails?.address?.streetAddress +
               ", " +
