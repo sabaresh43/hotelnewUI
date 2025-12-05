@@ -191,7 +191,7 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
           <Dropdown
             key={roomType}
             open={roomType === "Budget Room"}
-            title={rooms?.Rooms[0]}
+            title={rooms?.Rooms?.[0]}
           >
             <div className="space-y-4 p-4">
               {/* {Object.entries(groupByBedOptions).map(([bedOption, rooms]) => {

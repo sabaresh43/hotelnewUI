@@ -17,7 +17,7 @@ export function FlightData({ data, searchState, metaData, className }) {
     metaData.flightClass,
   );
   const totalPrice = Object.values(fareBreakdowns).reduce(
-    (acc, item) => acc + +item.totalBeforeDiscount,
+    (acc, item) => acc + +item?.totalBeforeDiscount,
     0,
   );
   const discountedPrice = total;

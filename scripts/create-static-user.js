@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const path = require("path");
 const fs = require("fs");
 require("dotenv").config({ path: path.resolve(process.cwd(), ".env.local") });
