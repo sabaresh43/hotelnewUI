@@ -17,6 +17,10 @@ import SetNecessaryCookies from "./SetNecessaryCookies";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/next";
+import { CopilotSidebar } from "@copilotkit/react-ui";
+import { CopilotKit } from "@copilotkit/react-core";
+// import "./globals.css";
+import "@copilotkit/react-ui/styles.css";
 
 const monse = Montserrat({
   subsets: ["latin"],
@@ -95,6 +99,17 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={`${tradegothic.variable} ${monse.variable}`}>
       <body className={monse.className}>
+       <CopilotKit
+          // agent="hotel_booking_agent"
+          runtimeUrl="/api/copilot"
+          cloud={false}  
+          // agent={false}
+        >
+          <CopilotSidebar
+            defaultOpen={false}
+            title="Golob Assistant"
+            position="right"
+          >
         {maintenanceMode.enabled === true &&
         !alloweRoutesWhileMaintenance.some(
           (path) =>
@@ -121,6 +136,8 @@ export default async function RootLayout({ children }) {
         <Toaster richColors closeButton expand position="top-right" />
         <SetNecessaryCookies />
         <Analytics />
+          </CopilotSidebar>
+        </CopilotKit>
       </body>
     </html>
   );
