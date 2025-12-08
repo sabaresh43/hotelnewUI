@@ -77,85 +77,180 @@ export default function BookingReview({ nextStep, hotelDetails, searchState }) {
 
   async function handleConfirm(e) {
     e.preventDefault();
-    console.log("handleConfirm called");
+    console.log("handleConfirm called - Redirecting to HitPay payment");
     const btn = e.currentTarget;
     btn.disabled = true;
 
     try {
-      // Static fallback room data
-      const staticRoom = {
-        _id: "6746b60b0f952c93060c5716",
-        hotelId: hotelDetails._id || "6746b60b0f952c93060c5715",
-        roomType: "Standard Room",
-        bedOptions: "1 King Bed",
-        sleepsCount: 2,
-        floor: 1,
-        roomNumber: "101",
-        features: ["WiFi", "TV", "Air Conditioning"],
-        amenities: ["Towels", "Toiletries"],
-        images: ["/placeholder.jpg"],
-        price: {
-          base: 100,
-          tax: 10,
-          serviceFee: 5,
-          discount: { type: "percentage", amount: 0 }
+      console.log("💳 Initiating HitPay payment from Reserve button...");
+
+      // Calculate total price from selected rooms
+      const calculateRoomPrice = (room) => {
+        if (room?.TotalPrice) return +room.TotalPrice;
+        if (room?.totalPrice) return +room.totalPrice;
+        if (room?.Price) return +room.Price;
+        if (room?.price?.base) {
+          const base = +room.price.base;
+          const tax = +(room.price?.tax || 0);
+          const serviceFee = +(room.price?.serviceFee || 0);
+          let discount = 0;
+          if (room?.price?.discount?.type === "percentage") {
+            discount = base * (+room.price.discount.amount / 100);
+          } else if (room?.price?.discount?.amount) {
+            discount = +room.price.discount.amount;
+          }
+          return base + tax + serviceFee - discount;
         }
+        return 100; // fallback
       };
 
-      const roomsToBook = selectedRooms.length > 0
-        ? selectedRooms.map(room => ({
-          ...room,
-          hotelId: room.hotelId || hotelDetails._id || "6746b60b0f952c93060c5715"
-        }))
-        : [staticRoom];
+      const totalPrice = selectedRooms.length > 0
+        ? selectedRooms.reduce((sum, room) => sum + calculateRoomPrice(room), 0)
+        : 100;
 
-      const bookingData = {
-        guests: guestInfo.length > 0 ? guestInfo : [{
-          firstName: "Test",
-          lastName: "User",
-          email: "test@example.com",
-          phone: { dialCode: "+1", number: "1234567890" },
-          guestType: "adult",
-          age: 30,
-          isPrimary: true
-        }],
-        selectedRooms: roomsToBook,
+      // Get primary guest info
+      const primaryGuest = guestInfo.length > 0
+        ? guestInfo.find(g => g.isPrimary) || guestInfo[0]
+        : { firstName: "Guest", lastName: "User", email: "guest@example.com", phone: { dialCode: "+65", number: "12345678" } };
+
+      const paymentPayload = {
+        amount: totalPrice,
+        email: primaryGuest.email || "guest@example.com",
+        name: `${primaryGuest.firstName || "Guest"} ${primaryGuest.lastName || "User"}`,
+        phone: `${primaryGuest.phone?.dialCode || "+65"} ${primaryGuest.phone?.number || "12345678"}`,
+        purpose: `Hotel Booking - ${hotelDetails.name}`,
+        payment_methods: ["card", "paynow_online"],
       };
 
-      console.log("Calling hotelRoomReserveAction with:", bookingData);
-      const res = await hotelRoomReserveAction(bookingData);
-      console.log("hotelRoomReserveAction result:", res);
+      console.log("💳 Payment payload:", paymentPayload);
 
-      if (res.success) {
-        sessionStorage.removeItem("guests");
-        sessionStorage.removeItem("selectedRooms");
-        router.push(`${pathname}?tab=${nextStep}`);
+      // Call HitPay API
+      const response = await fetch("https://hitpay-backend.vercel.app/api/hitpay/create-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentPayload),
+      });
+
+      console.log("💳 HitPay response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ HitPay API error:", errorText);
+        throw new Error(`Payment API returned ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log("💳 Payment API response:", data);
+
+      if (data?.success && data?.payment_url) {
+        console.log("✅ Redirecting to HitPay payment page:", data?.payment_url);
+        // Redirect to HitPay payment page
+        window.location.href = data?.payment_url;
+      } else if (data.payment_url) {
+        console.log("✅ Redirecting to HitPay payment page:", data?.payment_url);
+        window.location.href = data?.payment_url;
       } else {
-        if (res.name === "RoomAlreadyReserved") {
-          toast({
-            title: res.name,
-            description: res.message,
-            variant: "destructive",
-          });
-          setTimeout(() => {
-            router.push(`${pathname}?tab=${nextStep}`);
-          }, 1000);
-        } else {
-          toast({
-            title: "Failed",
-            description: res.message,
-            variant: "destructive",
-          });
-        }
+        throw new Error(data.error || data.message || "Payment URL not received from HitPay");
       }
     } catch (error) {
-      console.error("handleConfirm error:", error);
+      console.error("❌ HitPay payment error:", error);
       toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please check console.",
+        title: "Payment Error",
+        description: error.message || "Failed to initiate payment. Please try again.",
         variant: "destructive",
       });
-    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  async function handlePayNow(e) {
+    e.preventDefault();
+    console.log("handlePayNow called");
+    const btn = e.currentTarget;
+    btn.disabled = true;
+
+    try {
+      console.log("💳 Initiating direct HitPay payment...");
+
+      // Calculate total price from selected rooms
+      const calculateRoomPrice = (room) => {
+        if (room?.TotalPrice) return +room.TotalPrice;
+        if (room?.totalPrice) return +room.totalPrice;
+        if (room?.Price) return +room.Price;
+        if (room?.price?.base) {
+          const base = +room.price.base;
+          const tax = +(room.price?.tax || 0);
+          const serviceFee = +(room.price?.serviceFee || 0);
+          let discount = 0;
+          if (room?.price?.discount?.type === "percentage") {
+            discount = base * (+room.price.discount.amount / 100);
+          } else if (room?.price?.discount?.amount) {
+            discount = +room.price.discount.amount;
+          }
+          return base + tax + serviceFee - discount;
+        }
+        return 100; // fallback
+      };
+
+      const totalPrice = selectedRooms.length > 0
+        ? selectedRooms.reduce((sum, room) => sum + calculateRoomPrice(room), 0)
+        : 100;
+
+      // Get primary guest info
+      const primaryGuest = guestInfo.length > 0
+        ? guestInfo.find(g => g.isPrimary) || guestInfo[0]
+        : { firstName: "Guest", lastName: "User", email: "guest@example.com", phone: { dialCode: "+65", number: "12345678" } };
+
+      const paymentPayload = {
+        amount: totalPrice,
+        email: primaryGuest.email || "guest@example.com",
+        name: `${primaryGuest.firstName || "Guest"} ${primaryGuest.lastName || "User"}`,
+        phone: `${primaryGuest.phone?.dialCode || "+65"} ${primaryGuest.phone?.number || "12345678"}`,
+        purpose: `Hotel Booking - ${hotelDetails.name}`,
+        payment_methods: ["card", "paynow_online"],
+      };
+
+      console.log("💳 Payment payload:", paymentPayload);
+
+      // Call HitPay API
+      const response = await fetch("https://hitpay-backend.vercel.app/api/hitpay/create-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentPayload),
+      });
+
+      console.log("💳 HitPay response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ HitPay API error:", errorText);
+        throw new Error(`Payment API returned ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log("💳 Payment API response:", data);
+
+      if (data?.success && data?.payment_url) {
+        console.log("✅ Redirecting to HitPay payment page:", data?.payment_url);
+        // Redirect to HitPay payment page
+        window.location.href = data?.payment_url;
+      } else if (data.payment_url) {
+        console.log("✅ Redirecting to HitPay payment page:", data?.payment_url);
+        window.location.href = data?.payment_url;
+      } else {
+        throw new Error(data.error || data.message || "Payment URL not received from HitPay");
+      }
+    } catch (error) {
+      console.error("❌ HitPay payment error:", error);
+      toast({
+        title: "Payment Error",
+        description: error.message || "Failed to initiate payment. Please try again.",
+        variant: "destructive",
+      });
       btn.disabled = false;
     }
   }
@@ -265,8 +360,10 @@ export default function BookingReview({ nextStep, hotelDetails, searchState }) {
         </div>
       )}
 
-      <div className="text-end">
-        <Button type="button" onClick={handleConfirm}>Reserve</Button>
+      <div className="flex justify-end gap-4">
+        <Button type="button" onClick={handlePayNow} size="lg" className="w-full sm:w-auto">
+          Pay Now
+        </Button>
       </div>
     </div>
   );

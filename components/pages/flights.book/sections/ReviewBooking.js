@@ -287,8 +287,69 @@ const ReviewBooking = ({
         <div>
           <h1 className="text-3xl font-bold">Review Your Booking</h1>
         </div>
-        <Button onClick={onConfirm} className="rounded-lg text-black">
-          Reserve & Pay
+        <Button 
+          onClick={async (e) => {
+            e.currentTarget.disabled = true;
+            try {
+              console.log("💳 Initiating HitPay payment for flight...");
+              
+              // Get primary passenger info
+              const primaryPassenger = pDetails.find((p) => p.isPrimary) || pDetails[0];
+              
+              // Calculate total price from flight data
+              const totalPrice = flight?.totalPrice || flight?.price?.total || 100;
+              
+              const paymentPayload = {
+                amount: totalPrice,
+                email: primaryPassenger?.email || "passenger@example.com",
+                name: `${primaryPassenger?.firstName || "Passenger"} ${primaryPassenger?.lastName || "User"}`,
+                phone: primaryPassengerPhone 
+                  ? Object.values(primaryPassengerPhone).join(" ")
+                  : "+65 12345678",
+                purpose: `Flight Booking - ${flight.flightNumber}`,
+                payment_methods: ["card", "paynow_online"],
+              };
+              
+              console.log("💳 Flight payment payload:", paymentPayload);
+              
+              // Call HitPay API
+              const response = await fetch("https://hitpay-backend.vercel.app/api/hitpay/create-payment", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(paymentPayload),
+              });
+
+              console.log("💳 HitPay response status:", response.status);
+              
+              if (!response.ok) {
+                const errorText = await response.text();
+                console.error("❌ HitPay API error:", errorText);
+                throw new Error(`Payment API returned ${response.status}: ${errorText}`);
+              }
+
+              const data = await response.json();
+              console.log("💳 Payment API response:", data);
+
+              if (data?.success && data?.payment_url) {
+                console.log("✅ Redirecting to HitPay payment page:", data?.payment_url);
+                window.location.href = data?.payment_url;
+              } else if (data.payment_url) {
+                console.log("✅ Redirecting to HitPay payment page:", data?.payment_url);
+                window.location.href = data?.payment_url;
+              } else {
+                throw new Error(data.error || data.message || "Payment URL not received from HitPay");
+              }
+            } catch (error) {
+              console.error("❌ HitPay payment error:", error);
+              alert("Payment Error: " + (error.message || "Failed to initiate payment. Please try again."));
+              e.currentTarget.disabled = false;
+            }
+          }}
+          className="rounded-lg text-black"
+        >
+          Pay Now 
         </Button>
       </div>
 

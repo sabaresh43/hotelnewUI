@@ -238,7 +238,27 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
                       {/* Sleeps {rooms.sleepsCount} | {rooms.bedOptions} */}
                     </p>
                     <p className="text-xs font-bold opacity-60">
-                      {room?.Currency || room?.currency || 'EUR'} {room?.TotalPrice || room?.totalPrice || room?.price?.base || 0} / night
+                      {(() => {
+                        // Extract price from different possible formats
+                        let price = 0;
+                        if (room?.TotalPrice != null && !isNaN(room?.TotalPrice)) {
+                          price = +room.TotalPrice;
+                        } else if (room?.totalPrice != null && !isNaN(room?.totalPrice)) {
+                          price = +room.totalPrice;
+                        } else if (room?.Price != null && !isNaN(room?.Price)) {
+                          price = +room.Price;
+                        } else if (room?.price?.base != null && !isNaN(room?.price?.base)) {
+                          price = +room.price.base;
+                        }
+                        
+                        // Extract currency
+                        const currency = room?.Currency || room?.currency || room?.price?.currency || 'EUR';
+                        
+                        // Format and display
+                        return price > 0 
+                          ? `${formatCurrency(price, currency)} / night`
+                          : 'Price not available';
+                      })()}
                     </p>
                     <p className="text-xs opacity-60">
                       {/* Available rooms: {max} */}
