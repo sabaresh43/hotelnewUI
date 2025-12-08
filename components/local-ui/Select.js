@@ -202,13 +202,13 @@ const Select = forwardRef(
           title={buttonTitle}
           onClick={handleTrigger}
           className={cn(
-            "flex h-[2.5rem] w-full items-center justify-between rounded-md border-2 border-black bg-background px-3 py-2 text-left text-sm ring-offset-background placeholder:text-muted-foreground hover:bg-muted focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 lg:h-[3.5rem]",
+            "flex h-[2.5rem] text-dark w-full items-center justify-between rounded-md border-2 border-black bg-background px-3 py-2 text-left text-sm ring-offset-background placeholder:text-muted-foreground hover:bg-muted focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 lg:h-[3.5rem]",
             className,
             error && "border-destructive",
           )}
           {...props}
         >
-          <div className="h-auto w-full">{val.placeholder}</div>
+          <div className="h-auto w-full text-dark">{val.placeholder}</div>
           <ChevronDown className="h-4 w-4 flex-shrink-0" />
         </Button>
         {children && isMounted && (

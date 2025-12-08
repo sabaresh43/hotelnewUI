@@ -16,7 +16,7 @@ export function SelectDialCode({
       name={name}
       value={value}
       onValueChange={getDialCode}
-      className={cn("h-auto max-w-[110px] lg:h-auto", className)}
+      className={cn("h-auto max-w-[110px] lg:h-auto text-dark" , className)}
       placeholder={placeholder}
       popoverAttributes={{ containerDomObjRef: containerPopover }}
     >

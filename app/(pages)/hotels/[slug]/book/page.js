@@ -59,7 +59,7 @@ export default async function HotelBookPage({ params }) {
     ],
     "employee_id": "HR-EMP-00001",
   }
-  const hotelDetailsRes = await fetch(`${process.env.BACKEND_URL}/hotels/dida/${slug}`, {
+  const hotelDetailsRes = await fetch(`${process.env.BACKEND_URL}/hotels/${process.env.SUPPLIER_NAME}/${slug}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -76,10 +76,10 @@ export default async function HotelBookingDetailsPage({ params }) {
     paymentMethod,
   } = booking;
 
-  const cancellationPolicy = hotel.policies.cancellationPolicy;
-  const refundPolicy = hotel.policies.refundPolicy;
+  const cancellationPolicy = hotel?.policies?.cancellationPolicy;
+  const refundPolicy = hotel?.policies?.refundPolicy;
 
-  const checkInTime = parseHotelCheckInOutPolicy(hotel.policies.checkIn);
+  const checkInTime = parseHotelCheckInOutPolicy(hotel?.policies?.checkIn);
 
   const checkIn = new Date(checkInDate);
   checkIn.setHours(checkInTime.hour, checkInTime.minute, 0, 0);

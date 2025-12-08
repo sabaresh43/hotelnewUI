@@ -56,7 +56,7 @@ return formatted;
   // let hotels = await getHotels(validate.data, {
   //   filters: validatedFilters?.data,
   // });
- const apiUrl = `${process.env.BACKEND_URL}hotels/dida`;
+ const apiUrl = `${process.env.BACKEND_URL}hotels/${process.env.SUPPLIER_NAME}`;
 console.log("validatedFilters:", validatedFilters);
 console.log("validatedFilters params:", params);
 

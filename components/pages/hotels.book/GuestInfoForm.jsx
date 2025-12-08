@@ -195,7 +195,7 @@ export default function GuestInfoForm({
                   handleChange(index, "guestType", val.value)
                 }
                 name={`guestType-${index}`}
-                className="!mt-0"
+                className="!mt-0 text-dark"
                 error={errors[index]?.[`guestType`]}
               >
                 <Option value="adult">Adult</Option>

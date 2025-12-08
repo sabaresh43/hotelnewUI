@@ -195,7 +195,7 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
           (thumb) => thumb?.key === roomTypeName
         );
         const thumbnailSrc = thumbnailObj?.value || hotelDetails?.images?.[0] || "/placeholder-room.jpg";
-
+        console.log("thumbnailSrc room:", room);
         return (
           <Dropdown
             key={room._id || index}
@@ -231,6 +231,7 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
                       {/* Sleeps {rooms.sleepsCount} | {rooms.bedOptions} */}
                     </p>
                     <p className="text-xs font-bold opacity-60">
+
                       {room?.Currency} {room?.TotalPrice}/ night
                     </p>
                     <p className="text-xs opacity-60">

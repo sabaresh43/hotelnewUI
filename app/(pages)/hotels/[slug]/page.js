@@ -76,7 +76,7 @@ export default async function HotelDetailsPage({ params }) {
     ],
     "employee_id": "HR-EMP-00001",
   }
-  const hotelDetailsRes = await fetch(`${process.env.BACKEND_URL}/hotels/dida/${slug}`, {
+  const hotelDetailsRes = await fetch(`${process.env.BACKEND_URL}/hotels/${process.env.SUPPLIER_NAME}/${slug}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -140,7 +140,7 @@ export default async function HotelDetailsPage({ params }) {
   // const price = hotelPriceCalculation(cheapestRoom?.TotalPrice, 1);
   const price = cheapestRoom?.TotalPrice || 0;
 
-  const cheapestRoomPrice = formatCurrency(cheapestRoom?.TotalPrice || 0);
+  const cheapestRoomPrice = cheapestRoom?.TotalPrice || 0;
   // const totalBeforeDiscount = formatCurrency(price.totalBeforeDiscount);
 
   let isLiked = false;

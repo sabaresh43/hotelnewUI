@@ -18,14 +18,14 @@ export function SelectCountry({
         }}
         value={value}
         placeholder="select country"
-        className={cn(className, error && "border-destructive")}
+        className={cn(className, error && "border-destructive text-dark placeholder:text-dark")}
         popoverAttributes={{ containerDomObjRef: containerPopover }}
         {...props}
       >
         {countryInfo.map((country) => (
           <Option
             searchableValue={country.name}
-            className="py-3"
+            className="py-3 text-dark"
             key={country.name}
             value={country.name}
           >

@@ -28,13 +28,14 @@ export function FareCard({
       passengersCountObj,
       flightClass,
     );
-
   const fareTypeLabels = {
     base: "Base Fare",
     tax: "Tax",
     serviceFee: "Service Fee",
     discount: "Discount",
   };
+  console.log("fareTypeLabels",fareTypeLabels);
+  console.log("fareBreakdowns",fareBreakdowns);
 
   return (
     <div
@@ -173,7 +174,8 @@ export function HotelFareCard({ searchState, className = "" }) {
                     key={bedOption}
                     title={
                       <div className="text-md font-semibold">
-                        {`${bedOption} | ${breakdown.rooms.length} Room${breakdown.rooms.length > 1 ? "s" : ""}`}
+                        {/* ${bedOption} | */}
+                        {` ${breakdown.rooms.length} Room${breakdown.rooms.length > 1 ? "s" : ""}`}
                       </div>
                     }
                     open={true}
