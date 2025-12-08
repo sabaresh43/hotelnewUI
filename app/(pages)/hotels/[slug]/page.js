@@ -87,9 +87,13 @@ export default async function HotelDetailsPage({ params }) {
   const hotelDetails = {
     ...hotelDetailss?.data,
     images: hotelDetailss?.data?.thumbnails.map(img => img?.value),
-    rooms: hotelDetailss?.data?.rooms ? Object.values(hotelDetailss?.data?.rooms).map((room) => ({
+    rooms: hotelDetailss?.data?.rooms ? Object.values(hotelDetailss?.data?.rooms).map((room, index) => ({
       ...room,
+      _id: room._id ? `${room._id}_${index}` : `room_${index}`,
+      originalId: room._id,
       hotelId: hotelDetailss?.data?._id || "6746b60b0f952c93060c5715", // Static fallback
+      roomType: room?.Rooms?.[0] || `Room ${index + 1}`,
+      bedOptions: room?.bedOptions || "Standard",
     })) : [],
   };
   console.log("hotelDetails from external API:", hotelDetails);
@@ -393,7 +397,7 @@ export default async function HotelDetailsPage({ params }) {
                               {roomType}
                             </p>
                             <p className="text-xs font-bold opacity-60">
-                              {room?.Currency} {room?.TotalPrice} / night
+                              {room?.Currency || room?.currency || 'EUR'} {room?.TotalPrice || room?.totalPrice || room?.price?.base || 0} / night
                             </p>
                             <p className="text-xs opacity-60">
                               Person capacity:{" "}

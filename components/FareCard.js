@@ -203,14 +203,14 @@ export function HotelFareCard({ searchState, className = "" }) {
                               </span>
                               <div className="text-right">
                                 <p className="text-sm font-medium text-gray-900">
-                                  ${Math.abs(breakdown[fareType]).toFixed(2)}
+                                  ${Math.abs(breakdown[fareType] || 0).toFixed(2)}
                                 </p>
                                 <p className="text-xs text-gray-500">
                                   ({breakdown.rooms.length} × $
-                                  {Math.abs(
+                                  {breakdown.rooms.length > 0 ? Math.abs(
                                     +breakdown[fareType] /
                                       +breakdown.rooms.length,
-                                  ).toFixed(2)}
+                                  ).toFixed(2) : '0.00'}
                                   )
                                 </p>
                               </div>

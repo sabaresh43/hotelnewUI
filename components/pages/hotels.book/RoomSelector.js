@@ -195,7 +195,14 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
           (thumb) => thumb?.key === roomTypeName
         );
         const thumbnailSrc = thumbnailObj?.value || hotelDetails?.images?.[0] || "/placeholder-room.jpg";
-        console.log("thumbnailSrc room:", room);
+        console.log("Room data:", { 
+          id: room._id, 
+          TotalPrice: room?.TotalPrice, 
+          totalPrice: room?.totalPrice,
+          Currency: room?.Currency,
+          currency: room?.currency,
+          price: room?.price 
+        });
         return (
           <Dropdown
             key={room._id || index}
@@ -231,8 +238,7 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
                       {/* Sleeps {rooms.sleepsCount} | {rooms.bedOptions} */}
                     </p>
                     <p className="text-xs font-bold opacity-60">
-
-                      {room?.Currency} {room?.TotalPrice}/ night
+                      {room?.Currency || room?.currency || 'EUR'} {room?.TotalPrice || room?.totalPrice || room?.price?.base || 0} / night
                     </p>
                     <p className="text-xs opacity-60">
                       {/* Available rooms: {max} */}
