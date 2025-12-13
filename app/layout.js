@@ -17,6 +17,9 @@ import SetNecessaryCookies from "./SetNecessaryCookies";
 import { getOneDoc } from "@/lib/db/getOperationDB";
 import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/next";
+import { CopilotKit } from "@copilotkit/react-core";
+import { CopilotSidebar } from "@copilotkit/react-ui";
+import "@copilotkit/react-ui/styles.css";
 
 const monse = Montserrat({
   subsets: ["latin"],
@@ -95,6 +98,11 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={`${tradegothic.variable} ${monse.variable}`}>
       <body className={monse.className}>
+      <CopilotKit runtimeUrl="/api/copilot"
+        showDevConsole={true} 
+       >
+          <CopilotSidebar>
+
         {maintenanceMode.enabled === true &&
         !alloweRoutesWhileMaintenance.some(
           (path) =>
@@ -120,7 +128,10 @@ export default async function RootLayout({ children }) {
         <NextTopLoader showSpinner={false} color="hsl(159, 44%, 69%)" />
         <Toaster richColors closeButton expand position="top-right" />
         <SetNecessaryCookies />
+
         <Analytics />
+        </CopilotSidebar>
+        </CopilotKit>
       </body>
     </html>
   );

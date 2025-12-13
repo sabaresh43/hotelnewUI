@@ -9,7 +9,10 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import routes from "@/data/routes";
-export function FindFlightAndHotelcards() {
+export function FindFlightAndHotelcards({ session }) {
+  const flightLink = session?.user ? routes.flights.path : routes.login.path;
+  const hotelLink = session?.user ? routes.hotels.path : routes.login.path;
+
   return (
     <section className="grid gap-[12px] md:grid-cols-2 lg:gap-[24px]">
       <Card>
@@ -23,7 +26,7 @@ export function FindFlightAndHotelcards() {
             </CardHeader>
             <CardFooter className="flex justify-center p-0">
               <Button asChild>
-                <Link href={routes.flights.path} className="gap-1">
+                <Link href={flightLink} className="gap-1">
                   <Image
                     alt="papar_plane_icon"
                     src={"/icons/paper-plane-filled.svg"}
@@ -48,7 +51,7 @@ export function FindFlightAndHotelcards() {
             </CardHeader>
             <CardFooter className="flex justify-center p-0">
               <Button asChild>
-                <Link href={routes.hotels.path} className="gap-1">
+                <Link href={hotelLink} className="gap-1">
                   <Image
                     alt="papar_plane_icon"
                     src={"/icons/paper-plane-filled.svg"}

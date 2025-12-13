@@ -179,19 +179,35 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
         isValid={isValid}
         handleProceed={handleProceed}
       />
-      {Object.entries(groupedByRoomType).map(([roomType, rooms]) => {
+      {groupedByRoomType.map((room, index) => {
         // const groupByBedOptions = groupBy(rooms, (room) => room.bedOptions);
 
         const selectedRooms = selectedRoomGroups.filter(
-          (r) => r?._id === rooms?._id,
+          (r) => r?._id === room?._id,
         );
         const selected = selectedRooms.length;
 
+        // Get the room type name from the room's Rooms array
+        const roomTypeName = room?.Rooms?.[0] || `Room ${index + 1}`;
+
+        // Find matching thumbnail by room type name
+        const thumbnailObj = hotelDetails?.thumbnails?.find(
+          (thumb) => thumb?.key === roomTypeName
+        );
+        const thumbnailSrc = thumbnailObj?.value || hotelDetails?.images?.[0] || "/placeholder-room.jpg";
+        console.log("Room data:", { 
+          id: room._id, 
+          TotalPrice: room?.TotalPrice, 
+          totalPrice: room?.totalPrice,
+          Currency: room?.Currency,
+          currency: room?.currency,
+          price: room?.price 
+        });
         return (
           <Dropdown
-            key={roomType}
-            open={roomType === "Budget Room"}
-            title={rooms?.Rooms[0]}
+            key={room._id || index}
+            open={index === 0}
+            title={roomTypeName}
           >
             <div className="space-y-4 p-4">
               {/* {Object.entries(groupByBedOptions).map(([bedOption, rooms]) => {
@@ -204,13 +220,13 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
                 const selected = selectedRooms.length;
                  return ( */}
               <div
-                key={rooms._id}
+                key={room._id}
                 className="flex items-center justify-between border-b pb-4"
               >
                 <div className="flex items-center gap-4">
                   <Image
                     // src={rooms.images[0]}
-                    src={hotelDetails?.thumbnails?.[roomType]?.value}
+                    src={thumbnailSrc}
                     alt="Room image"
                     width={64}
                     height={64}
@@ -218,11 +234,31 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
                   />
                   <div>
                     <p className="text-sm font-medium">
-
+                      {roomTypeName}
                       {/* Sleeps {rooms.sleepsCount} | {rooms.bedOptions} */}
                     </p>
                     <p className="text-xs font-bold opacity-60">
-                      {rooms?.Currency} {rooms?.TotalPrice}/ night
+                      {(() => {
+                        // Extract price from different possible formats
+                        let price = 0;
+                        if (room?.TotalPrice != null && !isNaN(room?.TotalPrice)) {
+                          price = +room.TotalPrice;
+                        } else if (room?.totalPrice != null && !isNaN(room?.totalPrice)) {
+                          price = +room.totalPrice;
+                        } else if (room?.Price != null && !isNaN(room?.Price)) {
+                          price = +room.Price;
+                        } else if (room?.price?.base != null && !isNaN(room?.price?.base)) {
+                          price = +room.price.base;
+                        }
+                        
+                        // Extract currency
+                        const currency = room?.Currency || room?.currency || room?.price?.currency || 'EUR';
+                        
+                        // Format and display
+                        return price > 0 
+                          ? `${formatCurrency(price, currency)} / night`
+                          : 'Price not available';
+                      })()}
                     </p>
                     <p className="text-xs opacity-60">
                       {/* Available rooms: {max} */}
@@ -235,9 +271,9 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
                     variant="outline"
                     size="icon"
                     onClick={() => {
-                      const rooms = [...selectedRooms];
-                      if (rooms.length) {
-                        const roomToRemove = rooms.pop();
+                      const selectedRoomsCopy = [...selectedRooms];
+                      if (selectedRoomsCopy.length) {
+                        const roomToRemove = selectedRoomsCopy.pop();
                         handleDecrement(roomToRemove._id);
                       }
                     }}
@@ -252,7 +288,7 @@ export function RoomSelector({ nextStep, rooms, guests = 1, hotelDetails }) {
                     className="rounded-full"
                     size="icon"
                     onClick={() => {
-                      handleIncrement(rooms, max);
+                      handleIncrement(room, max);
                     }}
                   // disabled={selected === max}
                   >

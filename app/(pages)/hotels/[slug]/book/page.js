@@ -43,39 +43,43 @@ export default async function HotelBookPage({ params }) {
   }
 
   // const hotelDetails = await getHotel(slug, searchState);
-    const payload ={
-       "country": Designation.find(des => des.city === searchState.city)?.country || "",
-          cityCode: Number(Designation.find(des => des.city === searchState.city)?.code || ""),
-      "fromDate": formatDateToYYYYMMDD(new Date(Number(searchState.checkIn))),
-      "toDate": formatDateToYYYYMMDD(new Date(Number(searchState.checkOut))),
-      "sort": 1,
-      "currency": "EUR",
-      "occupancy": [
-          {
-              "adults": searchState?.guests,
-              "roomCount": searchState?.rooms,
-              "childAges": []
-          }
-      ],
-      "employee_id": "HR-EMP-00001",
+  const payload = {
+    "country": Designation.find(des => des.city === searchState.city)?.country || "",
+    cityCode: Number(Designation.find(des => des.city === searchState.city)?.code || ""),
+    "fromDate": formatDateToYYYYMMDD(new Date(Number(searchState.checkIn))),
+    "toDate": formatDateToYYYYMMDD(new Date(Number(searchState.checkOut))),
+    "sort": 1,
+    "currency": "EUR",
+    "occupancy": [
+      {
+        "adults": searchState?.guests,
+        "roomCount": searchState?.rooms,
+        "childAges": []
+      }
+    ],
+    "employee_id": "HR-EMP-00001",
   }
-    const hotelDetailsRes = await fetch(`${process.env.BACKEND_URL}/hotels/dida/${slug}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    const hotelDetailss = await hotelDetailsRes.json();
-    console.log("hotelDetailss:", hotelDetailss);
-    const hotelDetails = {
-      ...hotelDetailss?.data,
-      images:hotelDetailss?.data?.thumbnails.map(img=>img?.value),
-      rooms: hotelDetailss?.data?.rooms?.map((room) => ({
-        ...room,
-        hotelId: hotelDetailss?.data?._id || "6746b60b0f952c93060c5715", // Static fallback
-      })),
-    };
+  const hotelDetailsRes = await fetch(`${process.env.BACKEND_URL}/hotels/${process.env.SUPPLIER_NAME}/${slug}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const hotelDetailss = await hotelDetailsRes.json();
+  console.log("hotelDetailss:", hotelDetailss);
+  const hotelDetails = {
+    ...hotelDetailss?.data,
+    images: hotelDetailss?.data?.thumbnails.map(img => img?.value),
+    rooms: hotelDetailss?.data?.rooms ? Object.values(hotelDetailss?.data?.rooms).map((room, index) => ({
+      ...room,
+      _id: room._id ? `${room._id}_${index}` : `room_${index}`,
+      originalId: room._id,
+      hotelId: hotelDetailss?.data?._id || "6746b60b0f952c93060c5715", // Static fallback
+      roomType: room?.Rooms?.[0] || `Room ${index + 1}`,
+      bedOptions: room?.bedOptions || "Standard",
+    })) : [],
+  };
 
   if (!hotelDetails || Object.keys(hotelDetails).length === 0)
     return notFound();

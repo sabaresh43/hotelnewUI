@@ -129,7 +129,7 @@ export async function Nav({ className, type = "default", session, ...props }) {
           <Button asChild variant="link" className={"text-inherit"}>
             <Link href={routes.login.path}>{routes.login.title}</Link>
           </Button>
-          <Button
+          {/* <Button
             className={cn(
               "bg-black text-white hover:bg-gray-900",
               types[type].btnSignup,
@@ -137,7 +137,7 @@ export async function Nav({ className, type = "default", session, ...props }) {
             asChild
           >
             <Link href={routes.signup.path}>{routes.signup.title}</Link>
-          </Button>
+          </Button> */}
         </div>
       )}
 

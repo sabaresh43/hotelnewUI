@@ -83,7 +83,7 @@ const PreferencesForm = ({ passenger, index }) => {
               <Select
                 name="seatPosition"
                 value={preferences?.seating?.position}
-                popoverAttributes={{ className: "h-auto", search: false }}
+                popoverAttributes={{ className: "h-auto text-dark", search: false }}
                 onValueChange={(val) => {
                   const update = {
                     ...preferences,
@@ -109,7 +109,7 @@ const PreferencesForm = ({ passenger, index }) => {
               <Select
                 name="seatLocation"
                 value={preferences?.seating?.location}
-                popoverAttributes={{ className: "h-auto", search: false }}
+                popoverAttributes={{ className: "h-auto text-dark", search: false }}
                 onValueChange={(val) => {
                   const update = {
                     ...preferences,
@@ -134,7 +134,7 @@ const PreferencesForm = ({ passenger, index }) => {
               <Select
                 name="legroom"
                 value={preferences?.seating?.legroom}
-                popoverAttributes={{ className: "h-auto", search: false }}
+                popoverAttributes={{ className: "h-auto text-dark", search: false }}
                 onValueChange={(val) => {
                   const update = {
                     ...preferences,
@@ -185,7 +185,7 @@ const PreferencesForm = ({ passenger, index }) => {
               <Select
                 name={`p-${index}-baggageType`}
                 value={preferences?.baggage?.type}
-                popoverAttributes={{ className: "h-auto", search: false }}
+                popoverAttributes={{ className: "h-auto text-dark ", search: false }}
                 onValueChange={(val) => {
                   const update = {
                     ...preferences,
@@ -235,7 +235,7 @@ const PreferencesForm = ({ passenger, index }) => {
               <Select
                 name="mealType"
                 value={preferences?.meal?.type}
-                popoverAttributes={{ className: "h-auto", search: false }}
+                popoverAttributes={{ className: "h-auto text-dark", search: false }}
                 onValueChange={(val) => {
                   const update = {
                     ...preferences,

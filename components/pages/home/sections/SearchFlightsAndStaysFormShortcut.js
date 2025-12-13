@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import airplane from "@/public/icons/airplane-filled.svg";
 import bed from "@/public/icons/bed-filled.svg";
 
-export function SearchFlightsAndStaysFormShortcut({ className }) {
+export function SearchFlightsAndStaysFormShortcut({ className, session }) {
   return (
     <div
       className={cn(
@@ -30,10 +30,10 @@ export function SearchFlightsAndStaysFormShortcut({ className }) {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="flights">
-          <SearchFlightsForm />
+          <SearchFlightsForm session={session} />
         </TabsContent>
         <TabsContent value="hotels">
-          <SearchStaysForm />
+          <SearchStaysForm session={session} />
         </TabsContent>
       </Tabs>
     </div>

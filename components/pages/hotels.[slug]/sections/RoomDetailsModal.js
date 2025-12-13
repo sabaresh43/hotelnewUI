@@ -44,7 +44,11 @@ function RoomDetailsModal({ customTriggerElement, roomDetails = {} }) {
     roomNumber,
     roomType,
     floor,
+    Currency,
+    TotalPrice,
+    Tax
   } = roomDetails;
+  console.log("roomDetails",roomDetails);
 
   const [open, setOpen] = useState(false);
 
@@ -117,20 +121,20 @@ function RoomDetailsModal({ customTriggerElement, roomDetails = {} }) {
                 <h3 className="text-lg font-semibold">Pricing</h3>
                 <ul className="space-y-1 text-sm text-muted-foreground">
                   <li>
-                    <strong>Base:</strong> {price.currency || "USD"}{" "}
-                    {price.base}
+                    <strong>Base:</strong> {Currency || "USD"}{" "}
+                    {TotalPrice}
                   </li>
-                  {price.tax > 0 && (
+                  {/* {Tax[0]?.Amount > 0 && (
                     <li>
-                      <strong>Tax:</strong> {price.tax}
+                      <strong>Tax:</strong> {Tax[0]?.Currency} {Tax[0]?.Amount}
                     </li>
-                  )}
+                  )} */}
                   {price.serviceFee > 0 && (
                     <li>
                       <strong>Service Fee:</strong> {price.serviceFee}
                     </li>
                   )}
-                  {price.discount?.amount && (
+                  {/* {price.discount?.amount && (
                     <li>
                       <strong>Discount:</strong>{" "}
                       {price.discount.type === "percentage"
@@ -139,7 +143,7 @@ function RoomDetailsModal({ customTriggerElement, roomDetails = {} }) {
                       {price.discount.validUntil &&
                         ` (until ${new Date(price.discount.validUntil).toLocaleDateString()})`}
                     </li>
-                  )}
+                  )} */}
                 </ul>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -155,15 +159,15 @@ function RoomDetailsModal({ customTriggerElement, roomDetails = {} }) {
                     <li>
                       <strong>Floor:</strong> {floor ?? "N/A"}
                     </li>
-                    <li>
+                    {/* <li>
                       <strong>Total Beds:</strong> {totalBeds}
-                    </li>
+                    </li> */}
                     <li>
                       <strong>Bed Options:</strong> {bedOptions || "N/A"}
                     </li>
-                    <li>
+                    {/* <li>
                       <strong>Sleeps:</strong> {sleepsCount}
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
                 <div>
