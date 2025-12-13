@@ -46,6 +46,7 @@ export default async function HomePage() {
           </div>
         </section>
         <SearchFlightsAndStaysFormShortcut
+          session={session}
           className={
             "relative left-1/2 top-full w-[90%] -translate-x-1/2 -translate-y-[20%] lg:-translate-y-[25%] xl:-translate-y-[30%]"
           }
@@ -56,7 +57,7 @@ export default async function HomePage() {
         <FlightDestinations />
         <PopularHotelDestinations
         />
-        <FindFlightAndHotelcards />
+        <FindFlightAndHotelcards session={session} />
         <Reviews />
       </main>
       <Footer />

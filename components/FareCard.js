@@ -69,7 +69,7 @@ export function FareCard({
               >
                 <div className="flex flex-col gap-2 rounded-md border bg-white p-2">
                   <div className="divide-y divide-gray-200">
-                    {["base", "tax", "serviceFee", "discount"].map(
+                    {["base", "serviceFee"].map(
                       (fareType) => (
                         <div
                           key={fareType}
@@ -192,7 +192,7 @@ export function HotelFareCard({ searchState, className = "" }) {
                       ))}
 
                       <div className="mt-2 divide-y divide-gray-200">
-                        {["base", "tax", "serviceFee", "discount"].map(
+                        {["base", "serviceFee"].map(
                           (fareType) => (
                             <div
                               key={fareType}
@@ -203,6 +203,7 @@ export function HotelFareCard({ searchState, className = "" }) {
                               </span>
                               <div className="text-right">
                                 <p className="text-sm font-medium text-gray-900">
+                                  
                                   ${Math.abs(breakdown[fareType] || 0).toFixed(2)}
                                 </p>
                                 <p className="text-xs text-gray-500">

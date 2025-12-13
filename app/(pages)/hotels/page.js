@@ -30,7 +30,7 @@ export default async function HotelsPage() {
           <div className="text-[1.25rem] font-semibold text-secondary">
             Where are you going?
           </div>
-          <SearchStaysForm />
+          <SearchStaysForm session={session} />
         </div>
       </header>
 

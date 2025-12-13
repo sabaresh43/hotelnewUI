@@ -72,7 +72,9 @@ const DatePickerCustomInput = forwardRef(
 );
 DatePickerCustomInput.displayName = "DatePickerCustomInput";
 
-function SearchFlightsForm({ params = {} }) {
+import routes from "@/data/routes";
+
+function SearchFlightsForm({ params = {}, session }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const [popperOpened, setPopperOpened] = useState(false);
@@ -175,6 +177,12 @@ function SearchFlightsForm({ params = {} }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!session?.user) {
+      router.push(routes.login.path);
+      return;
+    }
+
     setIsSubmitting(true);
     const {
       success: sFForm,

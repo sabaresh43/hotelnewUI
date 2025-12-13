@@ -207,8 +207,8 @@ export default async function HotelDetailsPage({ params }) {
                   </span>
                 </>
               )} */}
-              <span className="text-[2rem]">{cheapestRoomPrice}</span>
-              /night
+              <span className="text-[2rem]">$ {cheapestRoomPrice}</span>
+              {/* /night */}
             </div>
           </div>
           <div className="flex flex-col gap-[16px] sm:flex-row">
@@ -384,20 +384,21 @@ export default async function HotelDetailsPage({ params }) {
                         key={room._id || index}
                         className="group flex items-center justify-between rounded-md border-b p-1 pb-4 hover:bg-gray-100"
                       >
-                        <div className="flex items-center gap-4">
-                          {/* <Image
-                                src={oneEquivalentRoom?.images[0]}
+                        <div className="flex justify-start items-center gap-4">
+                          <Image
+                                src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg"
                                 alt="Room image"
                                 width={64}
                                 height={64}
                                 className="aspect-square rounded-md object-cover"
-                              /> */}
+                              />
                           <div>
                             <p className="text-sm font-medium group-hover:underline">
                               {roomType}
                             </p>
                             <p className="text-xs font-bold opacity-60">
-                              {room?.Currency || room?.currency || 'EUR'} {room?.TotalPrice || room?.totalPrice || room?.price?.base || 0} / night
+                              {room?.Currency || room?.currency || 'EUR'} {room?.TotalPrice || room?.totalPrice || room?.price?.base || 0} 
+                              {/* / night */}
                             </p>
                             <p className="text-xs opacity-60">
                               Person capacity:{" "}

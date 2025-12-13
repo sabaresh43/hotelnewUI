@@ -29,7 +29,7 @@ export default async function Flights() {
           <div className="text-lg font-semibold text-secondary">
             Where are you flying?
           </div>
-          <SearchFlightsForm />
+          <SearchFlightsForm session={session} />
         </div>
       </header>
 

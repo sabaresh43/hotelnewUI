@@ -69,7 +69,8 @@ const DatePickerCustomInput = forwardRef(
 );
 DatePickerCustomInput.displayName = "DatePickerCustomInput";
 
-function SearchStaysForm({ params = {} }) {
+import routes from "@/data/routes";
+function SearchStaysForm({ params = {}, session }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -172,6 +173,12 @@ function SearchStaysForm({ params = {} }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!session?.user) {
+      router.push(routes.login.path);
+      return;
+    }
+
     setIsSending(true);
 
     const sp = {

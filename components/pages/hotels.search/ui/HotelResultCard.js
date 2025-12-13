@@ -79,7 +79,7 @@ export function HotelResultCard({
           <div className={"flex grow flex-col justify-between gap-2"}>
             <div>
               <div>
-                {totalDiscount > 0 ? (
+                {/* {totalDiscount > 0 ? (
                   <div className="flex flex-col items-end space-y-1 text-right">
                     {discountPercentage && (
                       <span className="rounded-md bg-tertiary px-2 py-1 text-sm font-semibold text-white">
@@ -104,14 +104,17 @@ export function HotelResultCard({
                   <p className="text-right text-[1.5rem] font-bold text-tertiary">
                     {formatCurrency(price)}
                   </p>
-                )}
-                <p className="text-right text-[0.875rem] text-secondary/75">
+                )} */}
+                 <p className="text-right text-[1.5rem] font-bold text-tertiary">
+                    {formatCurrency(price)}
+                  </p>
+                {/* <p className="text-right text-[0.875rem] text-secondary/75">
                   / night
-                </p>
+                </p> */}
               </div>
-              <div className="text-right text-[12px] text-secondary/75">
+              {/* <div className="text-right text-[12px] text-secondary/75">
                 + tax and service fee included
-              </div>
+              </div> */}
             </div>
             <div className="rounded-xl text-right text-xs font-semibold text-destructive">
               {availableRoomsCount} rooms available

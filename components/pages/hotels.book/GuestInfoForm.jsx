@@ -134,7 +134,7 @@ export default function GuestInfoForm({
             <div className="space-y-1.5">
               <Input
                 id={`firstName-${index}`}
-                label="First Name *"
+                label={guest.isPrimary ? "First Name *" : "First Name"}
                 value={guest.firstName}
                 onChange={(e) =>
                   handleChange(index, "firstName", e.target.value)
@@ -146,7 +146,7 @@ export default function GuestInfoForm({
             <div className="space-y-1.5">
               <Input
                 id={`lastName-${index}`}
-                label={"Last Name *"}
+                label={guest.isPrimary ? "Last Name *" : "Last Name"}
                 value={guest.lastName}
                 onChange={(e) =>
                   handleChange(index, "lastName", e.target.value)
